@@ -6,5 +6,5 @@ console.log("mandando oi pro amigo");
 
     }
 
-    mandaMensagem()
+   setTimeout(mandaMensagem(), 5000)
     console.log("tchayu!");
