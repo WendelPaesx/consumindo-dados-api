@@ -1,2 +1,12 @@
-let  consultaCEP = fetch ('https://viacep.com.br/ws/01001000/json')
-console.log(consultaCEP);
+let  consultaCEP = fetch ('https://viacep.com.br/ws/01001250/json')
+.then(resposta =>resposta.json())
+.then(r => {
+    if (r.erro){
+        throw Error('cep invalido')
+    }else
+
+    
+    console.log(r)
+})
+    .catch(erro => console.log(erro))
+console.log(consultaCEP)
