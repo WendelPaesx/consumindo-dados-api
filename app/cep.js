@@ -1,10 +1,12 @@
 async function buscaEndereco(cep) {
+    var mensagemErro = document.getElementById('erro')
+    mensagemErro.innerHTML = ""
     try {
 
 
         let consultaCEP = await fetch(`https://viacep.com.br/ws/${cep}/json`)
         var consultaCEPConvertida = await consultaCEP.json()
-        if (consultaCEPConvertida.erro){
+        if (consultaCEPConvertida.erro) {
             throw Error('CEP nao existe.')
 
         }
@@ -14,14 +16,15 @@ async function buscaEndereco(cep) {
         var bairro = document.getElementById('bairro')
         bairro.value = consultaCEPConvertida.bairro
         cidade.value = consultaCEPConvertida.localidade
-        logradouro.value= consultaCEPConvertida.logradouro
-        estado. value = consultaCEPConvertida.uf
+        logradouro.value = consultaCEPConvertida.logradouro
+        estado.value = consultaCEPConvertida.uf
         console.log(consultaCEPConvertida)
         return consultaCEPConvertida
     } catch (erro) {
+        mensagemErro.innerHTML= `<p>cep invalido, tente novamente!</p>`
         console.log(erro)
     }
 }
 
 var cep = document.getElementById('cep')
-cep.addEventListener("focusout", ()=> buscaEndereco(cep.value))
+cep.addEventListener("focusout", () => buscaEndereco(cep.value))
